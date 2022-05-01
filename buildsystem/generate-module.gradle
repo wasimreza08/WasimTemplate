@@ -1,0 +1,113 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+tasks.register("generateFeatureModule") {
+    doLast {
+        copy {
+            includeEmptyDirs = false
+            checkModuleNameProperty(name)
+
+            moduleName.metaClass.toSnakeCase = { replaceAll(/([A-Z])/, /_$1/).toLowerCase().replaceAll(/^_/, '') }
+
+            def tokens = generatePlaceholderTokens()
+            def templateDirPath = rootProject.file("buildsystem/.module-template/feature")
+            def featureDir = rootProject.file("feature-${tokens.placeholderlowercase}")
+
+            from templateDirPath
+            into featureDir
+
+            // Directory and file name replacement
+            tokens.each { placeholderKey, placeholderValue ->
+                filesMatching("**/$placeholderKey/**/*") {
+                    it.path = it.path.replace(placeholderKey, placeholderValue)
+                }
+                rename(placeholderKey, placeholderValue)
+            }
+
+            // File extension replacement
+            rename('.ktemplate', '.kt')
+
+            // Content replacement
+            filter(ReplaceTokens, tokens: tokens)
+
+            printAddModuleHelp(tokens, featureDir)
+        }
+    }
+}
+
+tasks.register("generateDomainModule") {
+    doLast {
+        copy {
+            includeEmptyDirs = false
+            checkModuleNameProperty(name)
+
+            moduleName.metaClass.toSnakeCase = { replaceAll(/([A-Z])/, /_$1/).toLowerCase().replaceAll(/^_/, '') }
+
+            def tokens = generatePlaceholderTokens()
+            def templateDirPath = rootProject.file("buildsystem/.module-template/domain")
+            def domainDirPath = rootProject.file("domain-${tokens.placeholderlowercase}")
+
+            from templateDirPath
+            into domainDirPath
+
+            // Directory and file name replacement
+            tokens.each { placeholderKey, placeholderValue ->
+                filesMatching("**/$placeholderKey/**/*") {
+                    it.path = it.path.replace(placeholderKey, placeholderValue)
+                }
+                rename(placeholderKey, placeholderValue)
+            }
+
+            // File extension replacement
+            rename('.ktemplate', '.kt')
+
+            // Content replacement
+            filter(ReplaceTokens, tokens: tokens)
+
+            printAddModuleHelp(tokens, domainDirPath)
+        }
+    }
+}
+
+private void printAddModuleHelp(LinkedHashMap<String, Object> tokens, moduleDirPath) {
+    def tokensUsed = tokens.collect { k, v -> "            ${k}: ${v}" }.join("\n")
+    println("""
+
+    Module created:
+        Name: ${tokens.PlaceholderName}
+        Package: com.example.${tokens.placeholderlowercase}
+        Directory: ${moduleDirPath}
+
+    Placeholders used:\n${tokensUsed}
+
+    1. Declare the module in settings.gradle (alphabetically ordered):
+        // Modules
+        [...]
+        ':$moduleDirPath.name',
+        [...]
+
+    2. Declare the dependency of the module on build.gradle that requires it (alphabetically ordered):
+        // Modules
+        [...]
+        implementation project(':$moduleDirPath.name')
+        [...]
+
+    3. Synchronize the project for the new module to be available.
+    """)
+}
+
+private LinkedHashMap<String, Object> generatePlaceholderTokens() {
+    def tokens = [
+            PlaceholderName        : moduleName.capitalize(),
+            placeholderUncaptalized: moduleName.uncapitalize(),
+            PLACEHOLDER_UPPERCASE  : moduleName.toSnakeCase().toUpperCase(),
+            placeholderlowercase   : moduleName.toLowerCase(),
+            placeholder_snake_case : moduleName.toSnakeCase()
+    ]
+    tokens
+}
+
+private boolean checkModuleNameProperty(taskName) {
+    if (!rootProject.hasProperty('moduleName')) {
+        throw InvalidUserDataException("moduleName] [Please provide the module name: ./gradlew $taskName -PmoduleName=ModuleName")
+    }
+}
