@@ -13,7 +13,7 @@ android {
     compileSdk androidConfig.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.example.party"
+        applicationId androidConfig.applicationId
         minSdk androidConfig.minSdkVersion
         targetSdk androidConfig.targetSdkVersion
         versionCode androidConfig.buildNumber
@@ -57,7 +57,7 @@ dependencies {
     //Hilt
     implementation commonDependencies.google.hiltAndroid
     kapt commonDependencies.google.hiltCompiler
-    implementation commonDependencies.google.maps
+
     implementation commonDependencies.other.timber
     //implementation project(path: ':feature-')
 }
