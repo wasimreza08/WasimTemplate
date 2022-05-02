@@ -9,7 +9,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-abstract class BaseViewModel<UiEvent : ViewEvent, UiState : ViewState, UiEffect : ViewEffect> : ViewModel() {
+abstract class BaseViewModel<UiEvent : ViewEvent, UiState : ViewState, UiEffect : ViewEffect> :
+    ViewModel() {
 
     private val initialState: UiState by lazy { provideInitialState() }
     private val _viewState: MutableStateFlow<UiState> by lazy { MutableStateFlow(initialState) }
@@ -43,8 +44,8 @@ abstract class BaseViewModel<UiEvent : ViewEvent, UiState : ViewState, UiEffect 
 
     abstract fun handleEvent(event: UiEvent)
 
-    protected fun sendEffect(effectBuilder: () -> UiEffect) {
-        viewModelScope.launch { _effect.send(effectBuilder()) }
+    protected fun sendEffect(effect: UiEffect) {
+        viewModelScope.launch { _effect.send(effect) }
     }
 }
 
