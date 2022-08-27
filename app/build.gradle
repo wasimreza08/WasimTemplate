@@ -43,6 +43,8 @@ android {
 }
 
 dependencies {
+    implementation project(':modules:feature-night-abstract')
+    implementation project(':modules:feature-night')
 
     def commonDependencies = rootProject.ext.commonDependencies
 
@@ -59,9 +61,4 @@ dependencies {
     kapt commonDependencies.google.hiltCompiler
 
     implementation commonDependencies.other.timber
-   // implementation project(':modules:feature-eusha')
-   // implementation project(':modules:feature-eusha-abstract')
-   //  implementation project(':modules:domain-')
-
 }
-
