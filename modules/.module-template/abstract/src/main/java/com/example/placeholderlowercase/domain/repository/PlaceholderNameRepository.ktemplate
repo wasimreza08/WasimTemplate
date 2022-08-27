@@ -14,4 +14,8 @@
  * limitations under the License.
  */
 
-package com.example.feature.@placeholderlowercase@.data.mapper
+package com.example.@placeholderlowercase@.domain.repository
+
+interface @PlaceholderName@Repository{
+
+}

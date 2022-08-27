@@ -14,4 +14,18 @@
  * limitations under the License.
  */
 
-package com.example.@placeholderlowercase@.data.datasource
+package com.example.feature.@placeholderlowercase@.di
+
+import com.example.feature.@placeholderlowercase@.presentation.launcher.@PlaceholderName@LauncherImpl
+import com.example.@placeholderlowercase@.presentation.@PlaceholderName@Launcher
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
+
+@Module
+@InstallIn(ActivityComponent::class)
+interface @PlaceholderName@PresentationModule {
+    @Binds
+    fun bindLauncher(launcher: @PlaceholderName@LauncherImpl): @PlaceholderName@Launcher
+}

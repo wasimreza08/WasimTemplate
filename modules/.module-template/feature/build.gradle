@@ -13,6 +13,8 @@ android {
 }
 
 dependencies {
+    implementation project(':core')
+    implementation project(':modules:feature-@placeholder_snake_case@-abstract')
 
     def commonDependencies = rootProject.ext.commonDependencies
 
@@ -28,11 +30,13 @@ dependencies {
     implementation commonDependencies.other.adapterDelegates
 
     implementation commonDependencies.google.material
-    implementation project(':core')
     implementation commonDependencies.jetbrains.coroutine
     implementation commonDependencies.jetbrains.kotlinSerialization
     implementation commonDependencies.other.retrofitKotlinSerializationConverter
     implementation commonDependencies.other.retrofit2
     implementation commonDependencies.other.okHttp
     implementation commonDependencies.other.okHttpInterceptor
+    // devtool
+    debugImplementation developmentDependencies.chucker
+    releaseImplementation developmentDependencies.chuckNoOp
 }

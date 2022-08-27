@@ -15,3 +15,29 @@
  */
 
 package com.example.feature.@placeholderlowercase@.di
+
+import com.example.core.dispatcher.BaseDispatcherProvider
+import com.example.core.dispatcher.MainDispatcherProvider
+import dagger.Binds
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
+import javax.inject.Singleton
+import com.example.feature.@placeholderlowercase@.domain.usecase.@PlaceholderName@UseCaseImpl
+import com.example.@placeholderlowercase@.domain.usecase.@PlaceholderName@UseCase
+
+@Module
+@InstallIn(ViewModelComponent::class)
+interface @PlaceholderName@DomainModule {
+    @Binds
+    fun bind@PlaceholderName@UseCase(useCase: @PlaceholderName@UseCaseImpl): @PlaceholderName@UseCase
+
+    companion object {
+        @Singleton
+        @Provides
+        fun provideDispatcher(): BaseDispatcherProvider {
+            return MainDispatcherProvider()
+        }
+    }
+}

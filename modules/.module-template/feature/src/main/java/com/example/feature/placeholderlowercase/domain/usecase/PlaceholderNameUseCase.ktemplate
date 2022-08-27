@@ -15,3 +15,15 @@
  */
 
 package com.example.feature.@placeholderlowercase@.domain.usecase
+
+import com.example.core.dispatcher.BaseDispatcherProvider
+import com.example.@placeholderlowercase@.domain.repository.@PlaceholderName@Repository
+import com.example.@placeholderlowercase@.domain.usecase.@PlaceholderName@UseCase
+import javax.inject.Inject
+
+class @PlaceholderName@UseCaseImpl @Inject constructor(
+    private val repository: @PlaceholderName@Repository,
+    private val dispatcherProvider: BaseDispatcherProvider
+): @PlaceholderName@UseCase{
+
+}

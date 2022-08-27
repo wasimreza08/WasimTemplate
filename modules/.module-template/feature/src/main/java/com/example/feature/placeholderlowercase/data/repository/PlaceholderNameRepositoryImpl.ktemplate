@@ -15,3 +15,14 @@
  */
 
 package com.example.feature.@placeholderlowercase@.data.repository
+
+import com.example.feature.@placeholderlowercase@.data.datasource.@PlaceholderName@DataSource
+import com.example.@placeholderlowercase@.domain.repository.@PlaceholderName@Repository
+import javax.inject.Inject
+
+class @PlaceholderName@RepositoryImpl @Inject constructor(
+ private val dataSource: @PlaceholderName@DataSource,
+): @PlaceholderName@Repository{
+
+}
+

@@ -8,6 +8,8 @@
         <entry key="modules/feature-log/src/main/res/layout/fragment_log.xml" value="0.17239583333333333" />
         <entry key="modules/feature-log/src/main/res/layout/log_activity.xml" value="0.17239583333333333" />
         <entry key="modules/feature-log/src/main/res/layout/log_fragment.xml" value="0.17239583333333333" />
+        <entry key="modules/feature-search/src/main/res/layout/search_activity.xml" value="0.171875" />
+        <entry key="modules/feature-search/src/main/res/layout/search_fragment.xml" value="0.171875" />
       </map>
     </option>
   </component>

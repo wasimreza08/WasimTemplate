@@ -59,7 +59,9 @@ dependencies {
     kapt commonDependencies.google.hiltCompiler
 
     implementation commonDependencies.other.timber
-    //implementation project(':modules:feature-log')
-   // implementation project(':modules:feature-')
+   // implementation project(':modules:feature-eusha')
+   // implementation project(':modules:feature-eusha-abstract')
    //  implementation project(':modules:domain-')
+
 }
+

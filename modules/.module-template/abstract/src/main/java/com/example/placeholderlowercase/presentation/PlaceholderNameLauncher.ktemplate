@@ -14,4 +14,10 @@
  * limitations under the License.
  */
 
-package com.example.@placeholderlowercase@.domain.usecase
+package com.example.@placeholderlowercase@.presentation
+
+import android.app.Activity
+
+interface @PlaceholderName@Launcher{
+    fun launch(activity: Activity)
+}
