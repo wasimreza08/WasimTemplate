@@ -9,8 +9,8 @@ tasks.register("generateFeatureModule") {
             moduleName.metaClass.toSnakeCase = { replaceAll(/([A-Z])/, /_$1/).toLowerCase().replaceAll(/^_/, '') }
 
             def tokens = generatePlaceholderTokens()
-            def templateDirPath = rootProject.file("buildsystem/.module-template/feature")
-            def featureDir = rootProject.file("feature-${tokens.placeholderlowercase}")
+            def templateDirPath = rootProject.file("modules/.module-template/feature")
+            def featureDir = rootProject.file("modules/feature-${tokens.placeholderlowercase}")
 
             from templateDirPath
             into featureDir
@@ -28,6 +28,9 @@ tasks.register("generateFeatureModule") {
 
             // Content replacement
             filter(ReplaceTokens, tokens: tokens)
+
+            def settingsDirPath = rootProject.file("settings.gradle")
+            settingsDirPath.append('\ninclude '+"'modules:$featureDir.name'")
 
             printAddModuleHelp(tokens, featureDir)
         }

@@ -13,8 +13,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Wasim"
-includeBuild("buildsystem")
-include (
-        ':app',
-        ':core'
-)
+//includeBuild("buildsystem")
+
+include ':app'
+include ':core'

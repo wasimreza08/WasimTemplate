@@ -59,5 +59,7 @@ dependencies {
     kapt commonDependencies.google.hiltCompiler
 
     implementation commonDependencies.other.timber
-    //implementation project(path: ':feature-')
+    //implementation project(':modules:feature-log')
+   // implementation project(':modules:feature-')
+   //  implementation project(':modules:domain-')
 }
