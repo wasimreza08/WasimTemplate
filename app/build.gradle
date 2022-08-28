@@ -43,8 +43,6 @@ android {
 }
 
 dependencies {
-    implementation project(':modules:feature-night-abstract')
-    implementation project(':modules:feature-night')
 
     def commonDependencies = rootProject.ext.commonDependencies
 

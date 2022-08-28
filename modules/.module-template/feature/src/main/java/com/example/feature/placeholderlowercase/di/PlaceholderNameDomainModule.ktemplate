@@ -26,15 +26,16 @@ import dagger.hilt.android.components.ViewModelComponent
 import javax.inject.Singleton
 import com.example.feature.@placeholderlowercase@.domain.usecase.@PlaceholderName@UseCaseImpl
 import com.example.@placeholderlowercase@.domain.usecase.@PlaceholderName@UseCase
+import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
 @InstallIn(ViewModelComponent::class)
 interface @PlaceholderName@DomainModule {
     @Binds
+    @ViewModelScoped
     fun bind@PlaceholderName@UseCase(useCase: @PlaceholderName@UseCaseImpl): @PlaceholderName@UseCase
 
     companion object {
-        @Singleton
         @Provides
         fun provideDispatcher(): BaseDispatcherProvider {
             return MainDispatcherProvider()

@@ -27,7 +27,7 @@ import com.example.feature.@placeholderlowercase@.presentation.viewmodel.@Placeh
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class @PlaceholderName@Fragment : Fragment(R.layout.@placeholderlowercase@_fragment) {
+class @PlaceholderName@Fragment : Fragment(R.layout.@placeholder_snake_case@_fragment) {
     private val viewModel: @PlaceholderName@ViewModel by viewModels()
     private val binding: @PlaceholderName@FragmentBinding by viewBinding(@PlaceholderName@FragmentBinding::bind)
 

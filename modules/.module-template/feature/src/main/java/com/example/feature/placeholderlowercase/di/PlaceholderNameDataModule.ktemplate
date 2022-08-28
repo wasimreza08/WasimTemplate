@@ -23,6 +23,7 @@ import com.example.core.BuildConfig.BASE_URL
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.Reusable
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
@@ -41,47 +42,59 @@ import okhttp3.logging.HttpLoggingInterceptor
 @Module
 @InstallIn(SingletonComponent::class)
 interface @PlaceholderName@DataModule {
-    @Binds
-    fun bind@PlaceholderName@DataSource(dataSource: @PlaceholderName@DataSource): @PlaceholderName@DataSource
 
     @Binds
     fun bind@PlaceholderName@Repository(repository: @PlaceholderName@RepositoryImpl): @PlaceholderName@Repository
 
     companion object {
-        private const val TIME_OUT = 30L
-        private val json = Json {
-            ignoreUnknownKeys = true
-        }
-
-        @Singleton
-        @Provides
-        fun provideOkHttpClient(
-            @ApplicationContext context: Context,
-        ): OkHttpClient {
-            val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
-                    level = HttpLoggingInterceptor.Level.BODY
-                 }
-            return OkHttpClient.Builder()
-                .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
-                .readTimeout(TIME_OUT, TimeUnit.SECONDS)
-                .addNetworkInterceptor(ChuckerInterceptor.Builder(context).build())
-                .addInterceptor(httpLoggingInterceptor)
-                .build()
-        }
-
-        @Singleton
-        @Provides
-        fun provideRetrofit(
-            okHttpClient: OkHttpClient,
-        ): Retrofit {
-            val contentType = "application/json".toMediaType()
-            return Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(okHttpClient)
-                .addConverterFactory(
-                    json.asConverterFactory(contentType)
-                )
-                .build()
-        }
+       @Reusable
+       @Provides
+       fun provideDataSource(
+          retrofit: Retrofit,
+       ): @PlaceholderName@DataSource {
+          return @PlaceholderName@DataSource(retrofit)
+       }
     }
 }
+
+@Module
+@InstallIn(SingletonComponent::class)
+object RetrofitModule {
+
+    private const val TIME_OUT = 30L
+    private val json = Json {
+        ignoreUnknownKeys = true
+    }
+
+    @Singleton
+    @Provides
+    fun provideOkHttpClient(
+        @ApplicationContext context: Context,
+    ): OkHttpClient {
+        val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
+        return OkHttpClient.Builder()
+            .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+            .readTimeout(TIME_OUT, TimeUnit.SECONDS)
+            .addNetworkInterceptor(ChuckerInterceptor.Builder(context).build())
+            .addInterceptor(httpLoggingInterceptor)
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRetrofit(
+        okHttpClient: OkHttpClient,
+    ): Retrofit {
+        val contentType = "application/json".toMediaType()
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(
+                json.asConverterFactory(contentType)
+            )
+            .build()
+    }
+}
+

@@ -16,12 +16,17 @@
 
 package com.example.feature.@placeholderlowercase@.presentation.viewmodel
 
+import androidx.lifecycle.SavedStateHandle
 import com.example.core.viewmodel.BaseViewModel
+import com.example.@placeholderlowercase@.domain.usecase.@PlaceholderName@UseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class @PlaceholderName@ViewModel @Inject constructor() : BaseViewModel<@PlaceholderName@Contract.Event, @PlaceholderName@Contract.State, @PlaceholderName@Contract.Effect>() {
+class @PlaceholderName@ViewModel @Inject constructor(
+    private val useCase: @PlaceholderName@UseCase,
+    private val savedStateHandle: SavedStateHandle,
+) : BaseViewModel<@PlaceholderName@Contract.Event, @PlaceholderName@Contract.State, @PlaceholderName@Contract.Effect>() {
 
     override fun provideInitialState() = @PlaceholderName@Contract.State()
 
