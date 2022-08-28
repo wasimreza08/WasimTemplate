@@ -17,10 +17,10 @@
         >
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/counter_strike_toolbar"
+            android:id="@+id/@placeholder_snake_case@_toolbar"
             android:layout_height="?attr/actionBarSize"
             android:layout_width="match_parent"
-            app:title="@string/counter_strike_title"
+            app:title="@string/@placeholder_snake_case@_title"
             app:titleTextColor="@color/white"
             />
     </com.google.android.material.appbar.AppBarLayout>

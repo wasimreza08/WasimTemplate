@@ -16,6 +16,9 @@
 
 package com.example.@placeholderlowercase@.domain.usecase
 
-interface @PlaceholderName@UseCase{
+import com.example.core.state.Output
+import kotlinx.coroutines.flow.Flow
 
+interface @PlaceholderName@UseCase{
+    operator fun invoke(): Flow<Output<Nothing>>
 }

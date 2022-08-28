@@ -19,11 +19,15 @@ package com.example.feature.@placeholderlowercase@.domain.usecase
 import com.example.core.dispatcher.BaseDispatcherProvider
 import com.example.@placeholderlowercase@.domain.repository.@PlaceholderName@Repository
 import com.example.@placeholderlowercase@.domain.usecase.@PlaceholderName@UseCase
+import com.example.core.state.Output
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
 
 class @PlaceholderName@UseCaseImpl @Inject constructor(
     private val repository: @PlaceholderName@Repository,
     private val dispatcherProvider: BaseDispatcherProvider
 ): @PlaceholderName@UseCase{
-
+ override fun invoke(): Flow<Output<Nothing>> {
+        TODO("Not yet implemented")
+    }
 }

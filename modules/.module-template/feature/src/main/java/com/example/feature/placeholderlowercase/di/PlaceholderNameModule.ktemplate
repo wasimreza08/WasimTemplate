@@ -16,8 +16,6 @@
 
 package com.example.feature.@placeholderlowercase@.di
 
-import com.example.core.dispatcher.BaseDispatcherProvider
-import com.example.core.dispatcher.MainDispatcherProvider
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -26,19 +24,27 @@ import dagger.hilt.android.components.ViewModelComponent
 import javax.inject.Singleton
 import com.example.feature.@placeholderlowercase@.domain.usecase.@PlaceholderName@UseCaseImpl
 import com.example.@placeholderlowercase@.domain.usecase.@PlaceholderName@UseCase
+import com.example.@placeholderlowercase@.domain.repository.@PlaceholderName@Repository
+import com.example.feature.@placeholderlowercase@.data.repository.@PlaceholderName@RepositoryImpl
+import com.example.feature.@placeholderlowercase@.presentation.launcher.@PlaceholderName@LauncherImpl
+import com.example.@placeholderlowercase@.presentation.@PlaceholderName@Launcher
+import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
 @InstallIn(ViewModelComponent::class)
 interface @PlaceholderName@DomainModule {
     @Binds
+    fun bind@PlaceholderName@Repository(repository: @PlaceholderName@RepositoryImpl): @PlaceholderName@Repository
+
+    @Binds
     @ViewModelScoped
     fun bind@PlaceholderName@UseCase(useCase: @PlaceholderName@UseCaseImpl): @PlaceholderName@UseCase
+}
 
-    companion object {
-        @Provides
-        fun provideDispatcher(): BaseDispatcherProvider {
-            return MainDispatcherProvider()
-        }
-    }
+@Module
+@InstallIn(ActivityComponent::class)
+interface @PlaceholderName@PresentationModule {
+    @Binds
+    fun bindLauncher(launcher: @PlaceholderName@LauncherImpl): @PlaceholderName@Launcher
 }

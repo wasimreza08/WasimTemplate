@@ -19,6 +19,8 @@ package com.example.feature.@placeholderlowercase@.presentation.viewmodel
 import androidx.lifecycle.SavedStateHandle
 import com.example.core.viewmodel.BaseViewModel
 import com.example.@placeholderlowercase@.domain.usecase.@PlaceholderName@UseCase
+import com.example.feature.@placeholderlowercase@.presentation.viewmodel.@PlaceholderName@Contract.Event.OnBackButtonClicked
+import com.example.feature.@placeholderlowercase@.presentation.viewmodel.@PlaceholderName@Contract.Event.OnViewModelInit
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -30,5 +32,12 @@ class @PlaceholderName@ViewModel @Inject constructor(
 
     override fun provideInitialState() = @PlaceholderName@Contract.State()
 
-    override fun handleEvent(event: @PlaceholderName@Contract.Event) {}
+    override fun handleEvent(event: @PlaceholderName@Contract.Event) {
+        when(event){
+            OnViewModelInit ->{}
+            OnBackButtonClicked ->{}
+        }
+    }
+
+    init{}
 }

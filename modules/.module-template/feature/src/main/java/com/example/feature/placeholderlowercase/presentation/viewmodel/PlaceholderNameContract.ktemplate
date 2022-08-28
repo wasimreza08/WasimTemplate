@@ -26,11 +26,12 @@ object @PlaceholderName@Contract {
     ) : ViewState
 
     sealed interface Event : ViewEvent {
+        object OnViewModelInit : Event // Remove if not used
         object OnBackButtonClicked : Event // Remove if not used
-        object OnShowSnackbarButtonClicked : Event // Remove if not used
     }
 
     sealed interface Effect : ViewEffect {
-        data class ShowSnackbar(val message: String) : Effect // Remove if not used
+        data class NetworkErrorEffect(val message: String) : Effect // Remove if not used
+        data class UnknownErrorEffect(val message: String) : Effect // Remove if not used
     }
 }

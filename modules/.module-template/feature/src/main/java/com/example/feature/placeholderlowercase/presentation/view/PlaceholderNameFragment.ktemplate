@@ -20,11 +20,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.core.delegate.viewBinding
 import com.example.feature.@placeholderlowercase@.R
 import com.example.feature.@placeholderlowercase@.databinding.@PlaceholderName@FragmentBinding
 import com.example.feature.@placeholderlowercase@.presentation.viewmodel.@PlaceholderName@ViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class @PlaceholderName@Fragment : Fragment(R.layout.@placeholder_snake_case@_fragment) {
@@ -33,5 +37,27 @@ class @PlaceholderName@Fragment : Fragment(R.layout.@placeholder_snake_case@_fra
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeViewState()
+        observeEffect()
+    }
+
+    private fun observeEffect() {
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.effect.collect { effect ->
+
+                }
+            }
+        }
+    }
+
+    private fun observeViewState() {
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.viewState.collect { viewState ->
+
+                }
+            }
+        }
     }
 }
