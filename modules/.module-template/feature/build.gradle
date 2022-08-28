@@ -34,9 +34,4 @@ dependencies {
     implementation commonDependencies.jetbrains.kotlinSerialization
     implementation commonDependencies.other.retrofitKotlinSerializationConverter
     implementation commonDependencies.other.retrofit2
-    implementation commonDependencies.other.okHttp
-    implementation commonDependencies.other.okHttpInterceptor
-    // devtool
-    debugImplementation developmentDependencies.chucker
-    releaseImplementation developmentDependencies.chuckNoOp
 }
