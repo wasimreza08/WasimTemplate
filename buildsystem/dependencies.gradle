@@ -28,6 +28,7 @@ ext {
     androidx_junit_version = '1.1.3'
     turbine_version = "0.7.0"
     testRule_version = "1.4.0"
+    assertJ = '3.22.0'
 
 
     buildDependencies = [
@@ -80,6 +81,7 @@ ext {
 
     commonTestDependencies = [
             junit4       : "junit:junit:${junit4}",
+            assertj      : "org.assertj:assertj-core:${assertJ}",
             mockk        : "io.mockk:mockk:${mockk_version}",
             mockkAndroid : "io.mockk:mockk-android:${mockk_version}",
             coroutineTest: "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine_version",

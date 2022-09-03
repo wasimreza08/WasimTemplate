@@ -75,6 +75,7 @@ dependencies {
     testImplementation commonTestDependencies.junit4
     testImplementation commonTestDependencies.turbine
     testImplementation commonTestDependencies.coroutineTest
-
+    testImplementation commonTestDependencies.assertj
+    //debug
     implementation commonDependencies.other.timber
 }
