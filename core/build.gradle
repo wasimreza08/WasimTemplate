@@ -17,9 +17,9 @@ android {
 dependencies {
     def commonDependencies = rootProject.ext.commonDependencies
     implementation commonDependencies.androidx.appcompat
-    //navigation
     implementation commonDependencies.androidx.navigationFragment
     implementation commonDependencies.androidx.navigationKtx
+
     implementation commonDependencies.google.material
     implementation commonDependencies.jetbrains.coroutine
     implementation commonDependencies.other.adapterDelegates
@@ -28,6 +28,8 @@ dependencies {
     implementation commonDependencies.other.retrofit2
     implementation commonDependencies.other.okHttp
     implementation commonDependencies.other.okHttpInterceptor
+    implementation commonDependencies.other.glide
+    annotationProcessor commonDependencies.other.glideCompiler
     // devtool
     def developmentDependencies = rootProject.ext.developmentDependencies
     debugImplementation developmentDependencies.chucker
