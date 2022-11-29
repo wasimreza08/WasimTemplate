@@ -61,11 +61,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Unit tests
         run: ./gradlew testDebugUnitTest
-      - name: Upload test report
-        uses: actions/upload-artifact@v2
-        with:
-          name: unit_test_report
-          path: app/build/reports/tests/testDebugUnitTest/
 
   build:
     name: build
