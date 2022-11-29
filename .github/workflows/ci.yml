@@ -31,7 +31,7 @@ jobs:
         with:
           arguments: detekt
       - name: lint check
-          run: ./gradlew lintDebug
+        run: ./gradlew lintDebug
       - name: Unit tests
         run: ./gradlew testDebugUnitTest
       - name: Build with Gradle
