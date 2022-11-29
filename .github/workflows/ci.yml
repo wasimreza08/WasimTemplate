@@ -68,7 +68,7 @@ jobs:
           path: app/build/reports/tests/testDebugUnitTest/
 
   build:
-    name: unit test
+    name: build
     runs-on: ubuntu-latest
 
     steps:
