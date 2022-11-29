@@ -17,10 +17,10 @@
 package com.example.feature.@placeholderlowercase@.data.datasource
 
 import javax.inject.Inject
-import retrofit2.Retrofit
+import com.example.feature.@placeholderlowercase@.data.api.Api
 
 class @PlaceholderName@DataSource @Inject constructor(
- retrofit: Retrofit
+ private val api: Api
 ) {
 
 

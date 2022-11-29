@@ -16,22 +16,24 @@
 
 package com.example.feature.@placeholderlowercase@.presentation.viewmodel
 
-import com.example.core.viewmodel.ViewEffect
 import com.example.core.viewmodel.ViewEvent
 import com.example.core.viewmodel.ViewState
 
 object @PlaceholderName@Contract {
     data class State(
         val text: String = "", // Remove if not used
+        val navigationEvent: NavigationEvent? = null,
+        val errorMessage: String? = null,
     ) : ViewState
 
     sealed interface Event : ViewEvent {
         object OnViewModelInit : Event // Remove if not used
         object OnBackButtonClicked : Event // Remove if not used
+        object OnNavigationConsumed : Event // Remove if not used
+        object OnErrorConsumed : Event // Remove if not used
     }
 
-    sealed interface Effect : ViewEffect {
-        data class NetworkErrorEffect(val message: String) : Effect // Remove if not used
-        data class UnknownErrorEffect(val message: String) : Effect // Remove if not used
+    sealed interface NavigationEvent {
+          object NavigateTo : NavigationEvent // Remove if not used
     }
 }

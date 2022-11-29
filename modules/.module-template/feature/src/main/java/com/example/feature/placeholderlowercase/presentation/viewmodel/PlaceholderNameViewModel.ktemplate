@@ -20,6 +20,8 @@ import androidx.lifecycle.SavedStateHandle
 import com.example.core.viewmodel.BaseViewModel
 import com.example.@placeholderlowercase@.domain.usecase.@PlaceholderName@UseCase
 import com.example.feature.@placeholderlowercase@.presentation.viewmodel.@PlaceholderName@Contract.Event.OnBackButtonClicked
+import com.example.feature.@placeholderlowercase@.presentation.viewmodel.@PlaceholderName@Contract.Event.OnErrorConsumed
+import com.example.feature.@placeholderlowercase@.presentation.viewmodel.@PlaceholderName@Contract.Event.OnNavigationConsumed
 import com.example.feature.@placeholderlowercase@.presentation.viewmodel.@PlaceholderName@Contract.Event.OnViewModelInit
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -28,7 +30,7 @@ import javax.inject.Inject
 class @PlaceholderName@ViewModel @Inject constructor(
     private val useCase: @PlaceholderName@UseCase,
     private val savedStateHandle: SavedStateHandle,
-) : BaseViewModel<@PlaceholderName@Contract.Event, @PlaceholderName@Contract.State, @PlaceholderName@Contract.Effect>() {
+) : BaseViewModel<@PlaceholderName@Contract.Event, @PlaceholderName@Contract.State>() {
 
     override fun provideInitialState() = @PlaceholderName@Contract.State()
 
@@ -36,8 +38,20 @@ class @PlaceholderName@ViewModel @Inject constructor(
         when(event){
             OnViewModelInit ->{}
             OnBackButtonClicked ->{}
+            OnNavigationConsumed ->{
+                updateState {
+                   copy(navigationEvent = null)
+                }
+            }
+            OnErrorConsumed -> {
+              updateState {
+                  copy(errorMessage = null)
+              }
+            }
         }
     }
 
-    init{}
+    init{
+        onEvent(OnViewModelInit)
+    }
 }

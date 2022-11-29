@@ -31,6 +31,6 @@ jobs:
         with:
           arguments: detekt
       - name: Unit tests
-        run: ./gradlew test
+        run: ./gradlew testDebugUnitTest
       - name: Build with Gradle
         run: ./gradlew build

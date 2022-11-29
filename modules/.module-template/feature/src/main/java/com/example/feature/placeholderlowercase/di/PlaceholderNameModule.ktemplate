@@ -28,8 +28,11 @@ import com.example.@placeholderlowercase@.domain.repository.@PlaceholderName@Rep
 import com.example.feature.@placeholderlowercase@.data.repository.@PlaceholderName@RepositoryImpl
 import com.example.feature.@placeholderlowercase@.presentation.launcher.@PlaceholderName@LauncherImpl
 import com.example.@placeholderlowercase@.presentation.@PlaceholderName@Launcher
+import com.example.feature.@placeholderlowercase@.data.api.Api
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.scopes.ViewModelScoped
+import dagger.hilt.components.SingletonComponent
+import retrofit2.Retrofit
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -40,6 +43,14 @@ interface @PlaceholderName@DomainModule {
     @Binds
     @ViewModelScoped
     fun bind@PlaceholderName@UseCase(useCase: @PlaceholderName@UseCaseImpl): @PlaceholderName@UseCase
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+object @PlaceholderName@DataModule {
+    @Singleton
+    @Provides
+    fun provideAPI(retrofit: Retrofit): Api = retrofit.create(Api::class.java)
 }
 
 @Module
