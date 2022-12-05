@@ -1,10 +1,10 @@
 ext {
-    kotlin_version = '1.6.10'
+    kotlin_version = '1.7.10'
     coroutine_version = '1.6.0'
     kotlinx_serialization = "1.3.2"
     kotlinx_serialization_converter_version = '0.8.0'
-    nav_version = '2.4.1'
-    hilt_version = '2.40.5'
+    nav_version = '2.5.1'
+    hilt_version = '2.43.2'
     map_version = "18.0.2"
     ktx_version = '1.7.0'
     appcompat_version = '1.4.1'
@@ -21,13 +21,21 @@ ext {
     //dev tool
     detekt_version = "1.19.0"
     chucker_version = "3.5.2"
-
+    leakCanary_version = "2.8.1"
     //testDependencies
     junit4 = '4.13.2'
     mockk_version = '1.12.2'
     androidx_junit_version = '1.1.3'
     turbine_version = "0.7.0"
     testRule_version = "1.4.0"
+    assertJ = '3.22.0'
+
+    // androidTestDependencies
+    androidx_test_espresso = "3.3.0"
+    androidx_test = "1.4.0"
+    androidx_test_ext = "1.1.3"
+    orchestrator = '1.4.1'
+    fragment_test_version = "1.5.2"
 
 
     buildDependencies = [
@@ -80,6 +88,7 @@ ext {
 
     commonTestDependencies = [
             junit4       : "junit:junit:${junit4}",
+            assertj      : "org.assertj:assertj-core:${assertJ}",
             mockk        : "io.mockk:mockk:${mockk_version}",
             mockkAndroid : "io.mockk:mockk-android:${mockk_version}",
             coroutineTest: "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine_version",
@@ -87,10 +96,26 @@ ext {
             roomTest     : "androidx.room:room-testing:${room_version}",
             turbine      : "app.cash.turbine:turbine:${turbine_version}",
             testRule     : "androidx.test:rules:${testRule_version}",
-            testRunner   : "androidx.test:runner:${testRule_version}"
+            testRunner   : "androidx.test:runner:${testRule_version}",
+            mockwebserver: "com.squareup.okhttp3:mockwebserver:${okHttp_version}",
     ]
+
     developmentDependencies = [
-            chucker  : "com.github.chuckerteam.chucker:library:${chucker_version}",
-            chuckNoOp: "com.github.ChuckerTeam.Chucker:library-no-op:${chucker_version}"
+            chucker   : "com.github.chuckerteam.chucker:library:${chucker_version}",
+            chuckNoOp : "com.github.chuckerteam.chucker:library-no-op:${chucker_version}",
+            leakcanary: "com.squareup.leakcanary:leakcanary-android:${leakCanary_version}",
+    ]
+
+    commonAndroidTestDependencies = [
+            espressoCore           : "androidx.test.espresso:espresso-core:${androidx_test_espresso}",
+            espressoContrib        : "androidx.test.espresso:espresso-contrib:${androidx_test_espresso}",
+            espressoIntent         : "androidx.test.espresso:espresso-intents:${androidx_test_espresso}",
+            testRunner             : "androidx.test:runner:${androidx_test}",
+            androidxTestExtJunit   : "androidx.test.ext:junit:${androidx_test_ext}",
+            androidxTestExtJunitKtx: "androidx.test.ext:junit-ktx:${androidx_test_ext}",
+            orchestrator           : "androidx.test:orchestrator:${orchestrator}",
+            hiltTest               : "com.google.dagger:hilt-android-testing:${hilt_version}",
+            navigationTest         : "androidx.navigation:navigation-testing:${nav_version}",
+            fragmentTest           : "androidx.fragment:fragment-testing:${fragment_test_version}"
     ]
 }

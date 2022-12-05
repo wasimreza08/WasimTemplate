@@ -19,7 +19,7 @@ android {
         versionCode androidConfig.buildNumber
         versionName androidConfig.buildVersionName
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.example.wasim.CustomTestRunner"
     }
 
 
@@ -58,6 +58,22 @@ dependencies {
     implementation commonDependencies.google.hiltAndroid
     kapt commonDependencies.google.hiltCompiler
 
+    // dev
     implementation commonDependencies.other.timber
-    //implementation project(path: ':feature-')
+    debugImplementation developmentDependencies.leakcanary
+
+    // androidTest
+    def commonAndroidTestDependencies = rootProject.ext.commonAndroidTestDependencies
+    def commonTestDependencies = rootProject.ext.commonTestDependencies
+    androidTestImplementation commonAndroidTestDependencies.espressoCore
+    androidTestImplementation commonAndroidTestDependencies.espressoContrib
+    androidTestImplementation commonAndroidTestDependencies.espressoIntent
+    androidTestImplementation commonAndroidTestDependencies.testRunner
+    androidTestImplementation commonAndroidTestDependencies.androidxTestExtJunit
+    androidTestImplementation commonAndroidTestDependencies.androidxTestExtJunitKtx
+    androidTestImplementation commonAndroidTestDependencies.hiltTest
+    kaptAndroidTest commonDependencies.google.hiltCompiler
+    androidTestImplementation commonTestDependencies.coroutineTest
+    androidTestImplementation commonDependencies.androidx.navigationFragment
+    debugImplementation commonAndroidTestDependencies.fragmentTest
 }

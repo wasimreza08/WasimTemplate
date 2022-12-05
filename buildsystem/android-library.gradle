@@ -4,6 +4,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 
 
+
 android {
     def androidConfig = rootProject.ext.android
 
@@ -28,17 +29,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         freeCompilerArgs += '-Xopt-in=kotlin.RequiresOptIn'
         freeCompilerArgs += '-Xopt-in=com.google.accompanist.pager.ExperimentalPagerApi'
         freeCompilerArgs += '-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi'
         freeCompilerArgs += '-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi'
         jvmTarget = '11'
-        useIR = true
     }
 
     packagingOptions {
@@ -47,8 +49,13 @@ android {
         pickFirst 'META-INF/INDEX.LIST'
         pickFirst 'META-INF/LICENSE-notice.md'
     }
+
     buildFeatures {
         viewBinding true
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
     }
 
 }
@@ -68,6 +75,7 @@ dependencies {
     testImplementation commonTestDependencies.junit4
     testImplementation commonTestDependencies.turbine
     testImplementation commonTestDependencies.coroutineTest
-
+    testImplementation commonTestDependencies.assertj
+    //debug
     implementation commonDependencies.other.timber
 }
