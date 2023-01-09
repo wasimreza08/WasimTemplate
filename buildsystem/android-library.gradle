@@ -42,12 +42,6 @@ android {
         jvmTarget = '11'
     }
 
-    packagingOptions {
-        pickFirst 'META-INF/LICENSE.md'
-        pickFirst 'META-INF/licenses/ASM'
-        pickFirst 'META-INF/INDEX.LIST'
-        pickFirst 'META-INF/LICENSE-notice.md'
-    }
 
     buildFeatures {
         viewBinding true
