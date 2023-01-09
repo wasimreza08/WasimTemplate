@@ -4,7 +4,6 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 
 
-
 android {
     def androidConfig = rootProject.ext.android
 
@@ -43,12 +42,6 @@ android {
         jvmTarget = '11'
     }
 
-    packagingOptions {
-        pickFirst 'META-INF/LICENSE.md'
-        pickFirst 'META-INF/licenses/ASM'
-        pickFirst 'META-INF/INDEX.LIST'
-        pickFirst 'META-INF/LICENSE-notice.md'
-    }
 
     buildFeatures {
         viewBinding true
@@ -61,21 +54,20 @@ android {
 }
 
 dependencies {
-    def commonDependencies = rootProject.ext.commonDependencies
-    implementation commonDependencies.jetbrains.kotlinLib
+    implementation libs.org.jetbrains.kotlin.stdlib.jdk8
     //Hilt
-    implementation commonDependencies.google.hiltAndroid
-    kapt commonDependencies.google.hiltCompiler
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
     //detekt
-    detektPlugins commonDependencies.other.detekt
+    detektPlugins libs.io.gitlab.arturbosch.detekt.formatting
 
     // test
-    testImplementation commonTestDependencies.mockk
-    testImplementation commonTestDependencies.mockkAndroid
-    testImplementation commonTestDependencies.junit4
-    testImplementation commonTestDependencies.turbine
-    testImplementation commonTestDependencies.coroutineTest
-    testImplementation commonTestDependencies.assertj
+    testImplementation libs.io.mockk
+    testImplementation libs.io.mockk.android
+    testImplementation libs.junit
+    testImplementation libs.turbine
+    testImplementation libs.org.jetbrains.kotlinx.coroutines.test
+    testImplementation libs.org.assertj.core
     //debug
-    implementation commonDependencies.other.timber
+    implementation libs.com.jakewharton.timber
 }

@@ -14,8 +14,8 @@ android {
 
     defaultConfig {
         applicationId androidConfig.applicationId
-        minSdk androidConfig.minSdkVersion
-        targetSdk androidConfig.targetSdkVersion
+        minSdk Integer.parseInt(libs.versions.android.min.sdk.get())
+        targetSdk Integer.parseInt(libs.versions.android.target.sdk .get())
         versionCode androidConfig.buildNumber
         versionName androidConfig.buildVersionName
 
@@ -40,40 +40,37 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.example.wasim'
 }
 
 dependencies {
 
-    def commonDependencies = rootProject.ext.commonDependencies
-
-    implementation commonDependencies.androidx.coreKtx
-    implementation commonDependencies.androidx.appcompat
-    implementation commonDependencies.androidx.constraintLayout
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.constraintlayout
 
     //navigation
-    implementation commonDependencies.androidx.navigationFragment
-    implementation commonDependencies.androidx.navigationKtx
+    implementation libs.androidx.navigation.fragment.ktx
+    implementation libs.androidx.navigation.ui.ktx
 
     //Hilt
-    implementation commonDependencies.google.hiltAndroid
-    kapt commonDependencies.google.hiltCompiler
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
 
     // dev
-    implementation commonDependencies.other.timber
-    debugImplementation developmentDependencies.leakcanary
+    implementation libs.com.jakewharton.timber
+    debugImplementation libs.com.squareup.leakcanary.android
 
     // androidTest
-    def commonAndroidTestDependencies = rootProject.ext.commonAndroidTestDependencies
-    def commonTestDependencies = rootProject.ext.commonTestDependencies
-    androidTestImplementation commonAndroidTestDependencies.espressoCore
-    androidTestImplementation commonAndroidTestDependencies.espressoContrib
-    androidTestImplementation commonAndroidTestDependencies.espressoIntent
-    androidTestImplementation commonAndroidTestDependencies.testRunner
-    androidTestImplementation commonAndroidTestDependencies.androidxTestExtJunit
-    androidTestImplementation commonAndroidTestDependencies.androidxTestExtJunitKtx
-    androidTestImplementation commonAndroidTestDependencies.hiltTest
-    kaptAndroidTest commonDependencies.google.hiltCompiler
-    androidTestImplementation commonTestDependencies.coroutineTest
-    androidTestImplementation commonDependencies.androidx.navigationFragment
-    debugImplementation commonAndroidTestDependencies.fragmentTest
+    androidTestImplementation libs.androidx.test.espresso.core
+    androidTestImplementation libs.androidx.test.espresso.contrib
+    androidTestImplementation libs.androidx.test.espresso.intents
+    androidTestImplementation libs.androidx.test.runner
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation  libs.androidx.test.ext.junit.ktx
+    androidTestImplementation libs.hilt.android.testing
+    kaptAndroidTest libs.hilt.compiler
+    androidTestImplementation libs.org.jetbrains.kotlinx.coroutines.test
+    androidTestImplementation libs.androidx.navigation.fragment.ktx
+    debugImplementation libs.androidx.fragment.test
 }
