@@ -16,22 +16,20 @@ dependencies {
     implementation project(':core')
     implementation project(':modules:feature-@placeholderlowercase@-shared')
 
-    def commonDependencies = rootProject.ext.commonDependencies
-
-    implementation commonDependencies.androidx.coreKtx
-    implementation commonDependencies.androidx.appcompat
-    implementation commonDependencies.androidx.constraintLayout
-    implementation commonDependencies.androidx.lifecycle
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.lifecycle.runtime.ktx
 
     //navigation
-    implementation commonDependencies.androidx.navigationFragment
-    implementation commonDependencies.androidx.navigationKtx
+    implementation libs.androidx.navigation.fragment.ktx
+    implementation libs.androidx.navigation.ui.ktx
 
-    implementation commonDependencies.other.adapterDelegates
+    implementation libs.adapter.delegates
 
-    implementation commonDependencies.google.material
-    implementation commonDependencies.jetbrains.coroutine
-    implementation commonDependencies.jetbrains.kotlinSerialization
-    implementation commonDependencies.other.retrofitKotlinSerializationConverter
-    implementation commonDependencies.other.retrofit2
+    implementation libs.com.google.android.material
+    implementation libs.bundles.coroutines
+    implementation libs.kotlinx.serialization
+    implementation libs.retrofit.kotlinx.serialization.converter
+    implementation libs.com.squareup.retrofit
 }
