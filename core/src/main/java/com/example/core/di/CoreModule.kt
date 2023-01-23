@@ -6,13 +6,14 @@ import com.example.core.BuildConfig.BASE_URL
 import com.example.core.dispatcher.BaseDispatcherProvider
 import com.example.core.dispatcher.MainDispatcherProvider
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dagger.Reusable
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
+import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -33,6 +34,7 @@ object CoreModule {
     @Provides
     fun provideOkHttpClient(
         @ApplicationContext context: Context,
+        interceptor: Interceptor,
     ): OkHttpClient {
         val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
@@ -59,10 +61,12 @@ object CoreModule {
             )
             .build()
     }
+}
 
-    @Reusable
-    @Provides
-    fun provideDispatcher(): BaseDispatcherProvider {
-        return MainDispatcherProvider()
-    }
+@Module
+@InstallIn(SingletonComponent::class)
+interface DispatcherModule {
+    @Singleton
+    @Binds
+    fun bindDispatcher(dispatcherProvider: MainDispatcherProvider): BaseDispatcherProvider
 }
