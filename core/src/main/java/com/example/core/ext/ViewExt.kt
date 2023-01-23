@@ -39,20 +39,8 @@ fun RecyclerView.asVerticalLayout(reverse: Boolean = false) {
     this.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, reverse)
 }
 
-fun View.showNetworkError() {
-    Snackbar.make(this, R.string.network_error, BaseTransientBottomBar.LENGTH_LONG).show()
-}
-
-fun View.showUnknownError() {
-    Snackbar.make(this, R.string.unknown_error, BaseTransientBottomBar.LENGTH_LONG).show()
-}
-
-fun View.uiVisibility(isVisible: Boolean = true) {
-    if (isVisible) {
-        this.visibility = View.VISIBLE
-    } else {
-        this.visibility = View.GONE
-    }
+fun View.showError(message: String) {
+    Snackbar.make(this, message, BaseTransientBottomBar.LENGTH_LONG).show()
 }
 
 fun ImageView.loadImage(
